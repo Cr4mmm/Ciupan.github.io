@@ -35,4 +35,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveNavLink);
     updateActiveNavLink();
+
+    // Contact Form Handling
+    const contactForm = document.getElementById('contactForm');
+    const confirmationPopup = document.getElementById('confirmationPopup');
+    const closePopup = document.querySelector('.close-popup');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const email = this.querySelector('input[name="email"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+        
+        // Here you would typically send the data to a server
+        // For now, we'll just show the confirmation popup
+        confirmationPopup.classList.add('active');
+        
+        // Clear the form
+        this.reset();
+    });
+
+    // Close popup when clicking the OK button
+    closePopup.addEventListener('click', function() {
+        confirmationPopup.classList.remove('active');
+    });
+
+    // Close popup when clicking outside
+    confirmationPopup.addEventListener('click', function(e) {
+        if (e.target === confirmationPopup) {
+            confirmationPopup.classList.remove('active');
+        }
+    });
 }); 
