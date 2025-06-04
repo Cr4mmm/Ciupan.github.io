@@ -9,8 +9,6 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background: url('bluebg.png') no-repeat center center fixed;
-    background-size: cover;
     color: #ffffff;
     min-height: 100vh;
     padding-bottom: 400px;
