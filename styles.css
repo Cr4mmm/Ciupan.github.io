@@ -9,9 +9,8 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #000000, #2c2c2c);
-    background-size: 200% 200%;
-    animation: gradientBG 15s ease infinite;
+    background: url('bluebg.png') no-repeat center center fixed;
+    background-size: cover;
     color: #ffffff;
     min-height: 100vh;
     padding-bottom: 400px;
