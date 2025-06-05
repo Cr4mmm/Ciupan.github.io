@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveNavLink);
     updateActiveNavLink();
 
-    // Contact Form Handling
+
     const contactForm = document.getElementById('contactForm');
     const confirmationPopup = document.getElementById('confirmationPopup');
     const closePopup = document.querySelector('.close-popup');
@@ -44,27 +44,52 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
+  
         const email = this.querySelector('input[name="email"]').value;
         const message = this.querySelector('textarea[name="message"]').value;
         
-        // Here you would typically send the data to a server
-        // For now, we'll just show the confirmation popup
+ 
         confirmationPopup.classList.add('active');
         
-        // Clear the form
+    
         this.reset();
     });
 
-    // Close popup when clicking the OK button
+
     closePopup.addEventListener('click', function() {
         confirmationPopup.classList.remove('active');
     });
 
-    // Close popup when clicking outside
+
     confirmationPopup.addEventListener('click', function(e) {
         if (e.target === confirmationPopup) {
             confirmationPopup.classList.remove('active');
+        }
+    });
+
+    // Mobile menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navLinksMobile = document.querySelector('.nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinksMobile.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    navLinksItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinksMobile.classList.remove('active');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinksMobile.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinksMobile.classList.remove('active');
         }
     });
 }); 
