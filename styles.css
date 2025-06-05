@@ -202,6 +202,7 @@ p {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+        z-index: 1001;
     }
 
     .nav-links {
@@ -210,21 +211,31 @@ p {
         right: -100%;
         width: 70%;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.95);
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: right 0.3s ease;
+        transition: all 0.3s ease;
         padding: 2rem;
+        z-index: 1000;
     }
 
     .nav-links.active {
         right: 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
 
     .nav-links a {
         margin: 1rem 0;
         font-size: 1.2rem;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+    }
+
+    .nav-links.active a {
+        opacity: 1;
+        transform: translateX(0);
     }
 
     .hamburger.active span:nth-child(1) {

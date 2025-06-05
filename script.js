@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
+    
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.navbar a');
 
@@ -67,29 +69,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile menu functionality
+   
     const hamburger = document.querySelector('.hamburger');
     const navLinksMobile = document.querySelector('.nav-links');
     const navLinksItems = document.querySelectorAll('.nav-links a');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinksMobile.classList.toggle('active');
-    });
+    console.log('Hamburger element:', hamburger);
+    console.log('Nav links element:', navLinksMobile);
 
-    // Close mobile menu when clicking on a link
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinksMobile.classList.remove('active');
+    if (hamburger && navLinksMobile) {
+        hamburger.addEventListener('click', function(e) {
+            console.log('Hamburger clicked');
+            e.stopPropagation();
+            this.classList.toggle('active');
+            navLinksMobile.classList.toggle('active');
         });
-    });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navLinksMobile.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navLinksMobile.classList.remove('active');
-        }
-    });
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('Nav link clicked');
+                hamburger.classList.remove('active');
+                navLinksMobile.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navLinksMobile.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinksMobile.classList.remove('active');
+            }
+        });
+    }
 }); 
